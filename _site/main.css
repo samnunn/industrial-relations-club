@@ -1,0 +1,114 @@
+/* Site setup */
+:root {
+    --font-family: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: var(--font-family);
+    font-weight: normal;
+}
+div.wrapper {
+    max-width: 500px;
+    width: 99%;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    margin: 2rem 0;
+}
+h1#site-title {
+    font-size: clamp(0.1rem, 10vw, 4rem);
+    margin: 0;
+}
+
+/* Text */
+span.tiny {
+    font-size: 0.5em;
+}
+hr {
+    border: 1px solid black;
+}
+
+/* Selector */
+select#rate-selector {
+    /* abolish detault styles */
+    appearance: none;
+    /* set new styles */
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 0;
+    /* text */
+    color: black;
+    font-size: 1rem;
+    font-family: var(--font-family);
+    line-height: 1.5;
+    /* sizing and spacing */
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.75em 1em 0.4em 1em;
+    grid-area: select;
+}
+#rate-selector-container {
+    position: relative;
+}
+#rate-selector-container::after {
+    content: "⏷";
+    font-weight: bold;
+    pointer-events: none;
+    width: 0.8em;
+    height: 0.5em;
+    position: absolute;
+    right: 1rem;
+    top: 20%;
+}
+
+/* Lists */
+ul {
+    padding-left: 1.5rem;
+}
+
+/* Pay table */
+table.pay-rates {
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+}
+table.pay-rates td>p {
+    color: black;
+    font-weight: bold;
+    margin: 0;
+}
+table.pay-rates td>p.note {
+    color: #555;
+    font-weight: normal;
+}
+table.pay-rates td:first-of-type > p.note::before {
+    content: "↳ ";
+}
+table.pay-rates td:first-of-type {
+    padding-right: 0rem;
+}
+td {
+    padding: 0.35rem 0;
+}
+tr td:last-of-type > p {
+    text-align: end;
+    white-space: nowrap;
+    font-weight: bold;
+}
+.dollars::before {
+    content: "$ ";
+}
+
+/* Cards */
+section.card {
+    border: 5px dotted black;
+    padding: 1.15rem 1rem 0.5rem 1rem;
+    margin: 1rem 0;
+}
+section.card > h2:first-of-type {
+    margin-top: 0;
+}

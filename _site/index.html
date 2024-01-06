@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Industrial Relations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1 id="site-title">Industrial Relations<span class="tiny">.club</span></h1>
+        </header>
+        <main>
+            <section class="card">
+                <h2>Pay Scale</h2>
+
+                <!-- <label for="rate-selector">Pay scale:</label> -->
+                <div id="rate-selector-container">
+                    <select name="rate-selector" id="rate-selector" class="custom-select">
+                        <!-- <option data-payscale-epoch-pd-allowance="0" data-payscale-epoch-annual-salary="0" value="0">Select…</option> -->
+                        <option data-payscale-epoch-pd-allowance="5984" data-payscale-epoch-annual-salary="82893" value="82893">Intern</option>
+                        <option data-payscale-epoch-pd-allowance="5984" data-payscale-epoch-annual-salary="90978" value="90978">Resident Medical Officer Yr 1</option>
+                        <option data-payscale-epoch-pd-allowance="5984" data-payscale-epoch-annual-salary="99869" value="99869">Resident Medical Officer Yr 2</option>
+                        <option data-payscale-epoch-pd-allowance="5984" data-payscale-epoch-annual-salary="109650" value="109650">Resident Medical Officer Yr 3</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="115028" value="115028">Registrar Yr 1</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="120678" value="120678">Registrar Yr 2</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="129574" value="129574">Registrar Yr 3</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="135950" value="135950" data-payscale-epoch-oncall>Registrar Yr 4</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="142644" value="142644">Registrar Yr 5</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="149673" value="149673">Registrar Yr 6</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="157053" value="157053">Registrar Yr 7</option>
+                        <option data-payscale-epoch-pd-allowance="14960" data-payscale-epoch-annual-salary="168679" value="168679">Senior Registrar Yr 1</option>
+                        <option data-payscale-epoch-pd-allowance="14960" data-payscale-epoch-annual-salary="177010" value="177010">Senior Registrar Yr 2</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="115028" value="115028">Supervised Medical Officer Yr 1</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="120678" value="120678">Supervised Medical Officer Yr 2</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="129574" value="129574">Supervised Medical Officer Yr 3</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="135950" value="135950">Supervised Medical Officer Yr 4</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="142644" value="142644">Supervised Medical Officer Yr 5</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="149673" value="149673">Supervised Medical Officer Yr 6</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="157053" value="157053">Supervised Medical Officer Yr 7</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="168679" value="168679">Supervised Medical Officer Yr 8</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="177010" value="177010">Supervised Medical Officer Yr 9</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="120678" value="120678">Trainee Medical Administrator Yr 1</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="129574" value="129574">Trainee Medical Administrator Yr 2</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="135950" value="135950">Trainee Medical Administrator Yr 3</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="142644" value="142644">Trainee Medical Administrator Yr 4</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="149673" value="149673">Trainee Medical Administrator Yr 5</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="157053" value="157053">Trainee Medical Administrator Yr 6</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="168679" value="168679">Trainee Medical Administrator Yr 7</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="129574" value="129574">Trainee Psychiatrist Yr 1</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="135950" value="135950">Trainee Psychiatrist Yr 2</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="142644" value="142644">Trainee Psychiatrist Yr 3</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="149673" value="149673">Trainee Psychiatrist Yr 4</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="157053" value="157053">Trainee Psychiatrist Yr 5</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="168679" value="168679">Trainee Psychiatrist Yr 6</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="177010" value="177010">Trainee Psychiatrist Yr 7</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="120678" value="120678">Trainee Public Health Physician Yr 1</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="129574" value="129574">Trainee Public Health Physician Yr 2</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="135950" value="135950">Trainee Public Health Physician Yr 3</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="142644" value="142644">Trainee Public Health Physician Yr 4</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="149673" value="149673">Trainee Public Health Physician Yr 5</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="157053" value="157053">Trainee Public Health Physician Yr 6</option>
+                        <option data-payscale-epoch-pd-allowance="10472" data-payscale-epoch-annual-salary="168679" value="168679">Trainee Public Health Physician Yr 7</option>
+                    </select>
+                </div>
+                
+            </section>
+            <section class="card">
+                <h2>Hourly Rates</h2>
+                <table class="pay-rates">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>Weekdays</p>
+                                <p class="note">8:00 am til 6:00 pm</p>
+                            </td>
+                            <td data-payscale-scale="1.0">
+                                <p></p>
+                                <p class="note">wow</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Evenings</p>
+                                <p class="note">6:00 pm til midnight</p>
+                            </td>
+                            <td data-payscale-scale="1.2"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Weeknights</p>
+                                <p class="note">midnight til 8:00 am</p>
+                            </td>
+                            <td data-payscale-scale="1.25"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Saturdays</p>
+                                <p class="note">all day</p>
+                            </td>
+                            <td data-payscale-scale="1.5"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Sundays</p>
+                                <p class="note">midnight til 8:00 am Monday</p>
+                            </td>
+                            <td data-payscale-scale="1.75"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Public Holidays</p>
+                                <p class="note">midnight til 8:00 am the next day</p>
+                            </td>
+                            <td data-payscale-scale="2.5"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Overtime</p>
+                                <p class="note">80 to 120 hours</p>
+                            </td>
+                            <td data-payscale-scale="1.5"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Mega Overtime</p>
+                                <p class="note">over 120 hours</p>
+                            </td>
+                            <td data-payscale-scale="2.0"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section class="card">
+                <h2>Annual Rates <span class="tiny">(full time)</span></h2>
+                <table class="pay-rates">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>Salary</p>
+                                <!-- <p class="note">full time</p> -->
+                            </td>
+                            <td>
+                                <p class="dollars" id="annual-rate"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>PD Allowance</p>
+                            </td>
+                            <td>
+                                <p class="dollars" id="pd-allowance"></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section class="card">
+                <h2>Leave Entitlements <span class="tiny">(full time)</span></h2>
+                <table class="pay-rates">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>Sick Leave</p>
+                            </td>
+                            <td>
+                                <p>80 hours</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Annual Leave</p>
+                            </td>
+                            <td>
+                                <p>160 hours</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>PD Leave (Accruing)</p>
+                            </td>
+                            <td>
+                                <p>1 week</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>PD Leave (Non-accruing)</p>
+                                <p class="note">accrues if applied for</p>
+                            </td>
+                            <td>
+                                <p>2 weeks</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Additional Leave</p>
+                                <p class="note">credited every October</p>
+                            </td>
+                            <td>
+                                <p>≤ 40 hours</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section class="card">
+                <h2>Recall Rates</h2>
+                <p>You always get paid for at least three hours.</p>
+                <table class="pay-rates">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>On Call</p>
+                                <p class="note">18.75% of Registrar Yr 4</p>
+                            </td>
+                            <td>
+                                <p class="dollars" id="oncall-rate"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>First three hours</p>
+                                <p class="note">6:00 am til midnight</p>
+                            </td>
+                            <td data-payscale-scale="1.5"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>First three hours on Sundays</p>
+                                <p class="note">6:00 am til midnight</p>
+                            </td>
+                            <td data-payscale-scale="1.75"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>First three hours at night</p>
+                                <p class="note">midnight til 6:00 am</p>
+                            </td>
+                            <td data-payscale-scale="2.0"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>All subsequent hours</p>
+                                <p class="note">any time of day</p>
+                            </td>
+                            <td data-payscale-scale="2.0"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section class="card">
+                <h2>Top Tips</h2>
+                <ol>
+                    <li>When overtime claims a refused, your head of department must provide reasons in writing</li>
+                    <li>Where possible, rosters will be published 21 days prior to their commencement</li>
+                    <li>You should be rostered off every second weekend</li>
+                    <li>If you are too tired to drive, you get a taxi voucher home and back to work</li>
+                    <li>You can’t be rostered on more than four nights in a row, or five if the total hours are ≤ 50</li>
+                    <li>Shifts starting after midday cannot last more than 12 hours</li>
+                    <li>You are entitled a paid 30 minute break every shift</li>
+                    <li>If your leave application is declined, they are required to tell you when you can take leave</li>
+                    <li>If you have not taken leave for one year, you only need to give two weeks’ notice before taking it (there is no application)</li>
+                    <li>If you don’t work on a public holiday, you still get eight hours of pay</li>
+                </ol>
+            </section>
+            <section class="card">
+                <h2>Useful Links</h2>
+                <ul>
+                    <li><a href="/AMA%20WA%20Industrial%20Agreement%20%282022%29.pdf">AMA WA Industrial Agreement (2022)</a></li>
+                    <li><a href="https://www.amawa.com.au/">AMA (WA) Homepage</a></li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>Made in Perth, Western Australia.</p>
+        </footer>
+    </div>
+    
+    <script>
+        function insertThousandsSeparator(x) {
+            return x
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function correctForAnnualSalaryAdjustment(dollars) {
+            const epochDate = new Date('2023-06-30')
+            const currentDate = new Date()
+            const diff = currentDate - epochDate
+            const yearDelta = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25))
+
+            adjustedDollars = dollars
+            // this loop has to exist because the agreement rounds to whole dollars each year
+            for (i = 0; i < yearDelta; i++) {
+                adjustedDollars = (adjustedDollars * 1.03).toFixed(0)
+            }
+            return adjustedDollars
+        }
+
+        rateSelector = document.querySelector('#rate-selector')
+        
+        function updateRates() {
+            // annual rate
+            annualRate = parseFloat(rateSelector.value)
+            annualRate = correctForAnnualSalaryAdjustment(annualRate)
+            annualRateReadout = document.querySelector('#annual-rate')
+            annualRateReadout.innerText = insertThousandsSeparator(annualRate)
+            
+            // hourly rates
+            hourlyRate = (annualRate / (40 * 52.1666)).toFixed(2)
+            scaledRateReadouts = document.querySelectorAll('[data-payscale-scale]')
+            for (s of scaledRateReadouts) {
+                payScale = s.getAttribute('data-payscale-scale')
+                payScale = parseFloat(payScale)
+                scaledRate = (hourlyRate * payScale).toFixed(2)
+                s.innerHTML = `<p class="dollars">${scaledRate}</p><p class="note">${payScale}x</p>`
+            }
+
+            // pd allowance
+            pdAllowanceReadout = document.querySelector('#pd-allowance')
+            pdAllownace = rateSelector.options[rateSelector.selectedIndex].getAttribute('data-payscale-epoch-pd-allowance')
+            pdAllowanceReadout.innerText = insertThousandsSeparator(pdAllownace)
+
+            // on call rate
+            onCallAnnualRate = document.querySelector('[data-payscale-epoch-oncall]').getAttribute('data-payscale-epoch-annual-salary')
+            onCallAnnualRate = correctForAnnualSalaryAdjustment(onCallAnnualRate)
+            onCallHourlyRate = ((0.1875 * onCallAnnualRate) / (40 * 52.1666)).toFixed(2)
+            onCallReadout = document.querySelector('#oncall-rate')
+            onCallReadout.innerText = onCallHourlyRate
+        }
+        
+        rateSelector.addEventListener('change', (e) => {
+            updateRates()
+        })
+        window.addEventListener('load', (e) => {
+            updateRates()
+        })
+    </script>
+</body>
+</html>
