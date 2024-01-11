@@ -51,6 +51,10 @@ select#rate-selector {
     padding: 0.75em 1em 0.4em 1em;
     grid-area: select;
 }
+select#rate-selector:focus {
+    /* removes blue rounded-corner outline when <select> element has focus */
+    outline: none;
+}
 #rate-selector-container {
     position: relative;
 }
