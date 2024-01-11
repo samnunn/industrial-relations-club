@@ -133,12 +133,12 @@
                 </table>
             </section>
             <section class="card">
-                <h2>Annual Rates <span class="tiny">(full time)</span></h2>
+                <h2>Salary <span class="tiny">(full time)</span></h2>
                 <table class="pay-rates">
                     <tbody>
                         <tr>
                             <td>
-                                <p>Salary</p>
+                                <p>Base Pay</p>
                                 <!-- <p class="note">full time</p> -->
                             </td>
                             <td>
@@ -148,9 +148,10 @@
                         <tr>
                             <td>
                                 <p>PD Allowance</p>
+                                <p class="note">Paid in fortnightly installments<span id="pd-allowance-fortnightly"></span></p>
                             </td>
                             <td>
-                                <p class="dollars" id="pd-allowance"></p>
+                                <p class="dollars" id="pd-allowance–yearly"></p>
                             </td>
                         </tr>
                     </tbody>
@@ -366,9 +367,11 @@
             }
 
             // pd allowance
-            pdAllowanceReadout = document.querySelector('#pd-allowance')
+            pdAllowanceYearlyReadout = document.querySelector('#pd-allowance–yearly')
+            pdAllowanceFornightlyReadout = document.querySelector('#pd-allowance-fortnightly')
             pdAllownace = rateSelector.options[rateSelector.selectedIndex].getAttribute('data-payscale-epoch-pd-allowance')
-            pdAllowanceReadout.innerText = insertThousandsSeparator(pdAllownace)
+            pdAllowanceYearlyReadout.innerText = insertThousandsSeparator(pdAllownace)
+            pdAllowanceFornightlyReadout.innerText = ` of $${(2* pdAllownace / 52.1666).toFixed(2)}`
 
             // on call rate
             onCallAnnualRate = document.querySelector('[data-payscale-epoch-oncall]').getAttribute('data-payscale-epoch-annual-salary')
