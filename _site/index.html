@@ -367,11 +367,14 @@
             }
 
             // pd allowance
+            pdAllowance = rateSelector.options[rateSelector.selectedIndex].getAttribute('data-payscale-epoch-pd-allowance')
+            pdAllowance = correctForAnnualSalaryAdjustment(pdAllowance)
+
             pdAllowanceYearlyReadout = document.querySelector('#pd-allowance–yearly')
+            pdAllowanceYearlyReadout.innerText = insertThousandsSeparator(pdAllowance)
+
             pdAllowanceFornightlyReadout = document.querySelector('#pd-allowance-fortnightly')
-            pdAllownace = rateSelector.options[rateSelector.selectedIndex].getAttribute('data-payscale-epoch-pd-allowance')
-            pdAllowanceYearlyReadout.innerText = insertThousandsSeparator(pdAllownace)
-            pdAllowanceFornightlyReadout.innerText = ` of $${(2* pdAllownace / 52.1666).toFixed(2)}`
+            pdAllowanceFornightlyReadout.innerText = ` of $${(2* pdAllowance / 52.1666).toFixed(2)}`
 
             // on call rate
             onCallAnnualRate = document.querySelector('[data-payscale-epoch-oncall]').getAttribute('data-payscale-epoch-annual-salary')
