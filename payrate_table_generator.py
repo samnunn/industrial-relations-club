@@ -12,13 +12,11 @@ annual_rates = ['80479', '88328', '96960', '106456', '111678', '117163', '125800
 for i in range(0,len(scale_names)):
     # PD allowances
     # Default is $10472 with special cases for interns, RMOs, and SRs
-    pd = '10472' 
-    if "Intern" in scale_names[i]:
-        pd = '5984'
-    elif "Resident Medical Officer" in scale_names[i]:
-        pd = '5984'
+    pd = '10167' 
+    if ("Intern" or "Resident Medical Officer") in scale_names[i]:
+        pd = '5810'
     elif "Senior Registrar" in scale_names[i]:
-        pd = '14960'
+        pd = '14524'
 
     # Uniquely identify registrar year 4
     # This is used to calculate the on-call rate client-side
