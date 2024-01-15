@@ -13,7 +13,9 @@ for i in range(0,len(scale_names)):
     # PD allowances
     # Default is $10472 with special cases for interns, RMOs, and SRs
     pd = '10167' 
-    if ("Intern" or "Resident Medical Officer") in scale_names[i]:
+    if "Intern" in scale_names[i]:
+        pd = '5810'
+    elif "Resident Medical Officer" in scale_names[i]:
         pd = '5810'
     elif "Senior Registrar" in scale_names[i]:
         pd = '14524'
