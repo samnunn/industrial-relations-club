@@ -1,17 +1,50 @@
 /* Site setup */
 :root {
     --font-family: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif;
+    --white: #ffffff;
+    --black: #000000;
+    --grey: #555555;
+    --background: #ffffff;
+    --blue: #2b83bd;
+    --purple: #8e44ad;
+    --clock: url("data:image/svg+xml,%3C%73%76%67%20%78%6D%6C%6E%73%3D%22%68%74%74%70%3A%2F%2F%77%77%77%2E%77%33%2E%6F%72%67%2F%32%30%30%30%2F%73%76%67%22%20%77%69%64%74%68%3D%22%32%34%22%20%68%65%69%67%68%74%3D%22%32%34%22%20%76%69%65%77%42%6F%78%3D%22%30%20%30%20%32%34%20%32%34%22%20%66%69%6C%6C%3D%22%6E%6F%6E%65%22%20%73%74%72%6F%6B%65%3D%22%63%75%72%72%65%6E%74%43%6F%6C%6F%72%22%20%73%74%72%6F%6B%65%2D%77%69%64%74%68%3D%22%32%22%20%73%74%72%6F%6B%65%2D%6C%69%6E%65%63%61%70%3D%22%72%6F%75%6E%64%22%20%73%74%72%6F%6B%65%2D%6C%69%6E%65%6A%6F%69%6E%3D%22%72%6F%75%6E%64%22%20%63%6C%61%73%73%3D%22%66%65%61%74%68%65%72%20%66%65%61%74%68%65%72%2D%63%6C%6F%63%6B%22%3E%3C%63%69%72%63%6C%65%20%63%78%3D%22%31%32%22%20%63%79%3D%22%31%32%22%20%72%3D%22%31%30%22%3E%3C%2F%63%69%72%63%6C%65%3E%3C%70%6F%6C%79%6C%69%6E%65%20%70%6F%69%6E%74%73%3D%22%31%32%20%36%20%31%32%20%31%32%20%31%36%20%31%34%22%3E%3C%2F%70%6F%6C%79%6C%69%6E%65%3E%3C%2F%73%76%67%3E");
+    --calendar: url("data:image/svg+xml,%3C%73%76%67%20%78%6D%6C%6E%73%3D%22%68%74%74%70%3A%2F%2F%77%77%77%2E%77%33%2E%6F%72%67%2F%32%30%30%30%2F%73%76%67%22%20%77%69%64%74%68%3D%22%32%34%22%20%68%65%69%67%68%74%3D%22%32%34%22%20%76%69%65%77%42%6F%78%3D%22%30%20%30%20%32%34%20%32%34%22%20%66%69%6C%6C%3D%22%6E%6F%6E%65%22%20%73%74%72%6F%6B%65%3D%22%63%75%72%72%65%6E%74%43%6F%6C%6F%72%22%20%73%74%72%6F%6B%65%2D%77%69%64%74%68%3D%22%32%22%20%73%74%72%6F%6B%65%2D%6C%69%6E%65%63%61%70%3D%22%72%6F%75%6E%64%22%20%73%74%72%6F%6B%65%2D%6C%69%6E%65%6A%6F%69%6E%3D%22%72%6F%75%6E%64%22%20%63%6C%61%73%73%3D%22%66%65%61%74%68%65%72%20%66%65%61%74%68%65%72%2D%63%61%6C%65%6E%64%61%72%22%3E%3C%72%65%63%74%20%78%3D%22%33%22%20%79%3D%22%34%22%20%77%69%64%74%68%3D%22%31%38%22%20%68%65%69%67%68%74%3D%22%31%38%22%20%72%78%3D%22%32%22%20%72%79%3D%22%32%22%3E%3C%2F%72%65%63%74%3E%3C%6C%69%6E%65%20%78%31%3D%22%31%36%22%20%79%31%3D%22%32%22%20%78%32%3D%22%31%36%22%20%79%32%3D%22%36%22%3E%3C%2F%6C%69%6E%65%3E%3C%6C%69%6E%65%20%78%31%3D%22%38%22%20%79%31%3D%22%32%22%20%78%32%3D%22%38%22%20%79%32%3D%22%36%22%3E%3C%2F%6C%69%6E%65%3E%3C%6C%69%6E%65%20%78%31%3D%22%33%22%20%79%31%3D%22%31%30%22%20%78%32%3D%22%32%31%22%20%79%32%3D%22%31%30%22%3E%3C%2F%6C%69%6E%65%3E%3C%2F%73%76%67%3E");
+    --chevron: url("data:image/svg+xml,%3C%73%76%67%20%78%6D%6C%6E%73%3D%22%68%74%74%70%3A%2F%2F%77%77%77%2E%77%33%2E%6F%72%67%2F%32%30%30%30%2F%73%76%67%22%20%77%69%64%74%68%3D%22%32%34%22%20%68%65%69%67%68%74%3D%22%32%34%22%20%76%69%65%77%42%6F%78%3D%22%30%20%30%20%32%34%20%32%34%22%20%66%69%6C%6C%3D%22%6E%6F%6E%65%22%20%73%74%72%6F%6B%65%3D%22%63%75%72%72%65%6E%74%43%6F%6C%6F%72%22%20%73%74%72%6F%6B%65%2D%77%69%64%74%68%3D%22%32%22%20%73%74%72%6F%6B%65%2D%6C%69%6E%65%63%61%70%3D%22%72%6F%75%6E%64%22%20%73%74%72%6F%6B%65%2D%6C%69%6E%65%6A%6F%69%6E%3D%22%72%6F%75%6E%64%22%20%63%6C%61%73%73%3D%22%66%65%61%74%68%65%72%20%66%65%61%74%68%65%72%2D%63%68%65%76%72%6F%6E%73%2D%64%6F%77%6E%22%3E%3C%70%6F%6C%79%6C%69%6E%65%20%70%6F%69%6E%74%73%3D%22%37%20%31%33%20%31%32%20%31%38%20%31%37%20%31%33%22%3E%3C%2F%70%6F%6C%79%6C%69%6E%65%3E%3C%70%6F%6C%79%6C%69%6E%65%20%70%6F%69%6E%74%73%3D%22%37%20%36%20%31%32%20%31%31%20%31%37%20%36%22%3E%3C%2F%70%6F%6C%79%6C%69%6E%65%3E%3C%2F%73%76%67%3E");
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --white: #000000;
+        --black: #ffffff;
+        --grey: #bbb;
+        --background: #111;
+        --blue: #17a2ff;
+        --purple: #d05aff;
+        --clock: url("data:image/svg+xml,%3C%73%76%67%20%78%6D%6C%6E%73%3D%22%68%74%74%70%3A%2F%2F%77%77%77%2E%77%33%2E%6F%72%67%2F%32%30%30%30%2F%73%76%67%22%20%77%69%64%74%68%3D%22%32%34%22%20%68%65%69%67%68%74%3D%22%32%34%22%20%76%69%65%77%42%6F%78%3D%22%30%20%30%20%32%34%20%32%34%22%20%66%69%6C%6C%3D%22%6E%6F%6E%65%22%20%73%74%72%6F%6B%65%3D%22%23%66%66%66%66%66%66%22%20%73%74%72%6F%6B%65%2D%77%69%64%74%68%3D%22%32%22%20%73%74%72%6F%6B%65%2D%6C%69%6E%65%63%61%70%3D%22%72%6F%75%6E%64%22%20%73%74%72%6F%6B%65%2D%6C%69%6E%65%6A%6F%69%6E%3D%22%72%6F%75%6E%64%22%20%63%6C%61%73%73%3D%22%66%65%61%74%68%65%72%20%66%65%61%74%68%65%72%2D%63%6C%6F%63%6B%22%3E%3C%63%69%72%63%6C%65%20%63%78%3D%22%31%32%22%20%63%79%3D%22%31%32%22%20%72%3D%22%31%30%22%3E%3C%2F%63%69%72%63%6C%65%3E%3C%70%6F%6C%79%6C%69%6E%65%20%70%6F%69%6E%74%73%3D%22%31%32%20%36%20%31%32%20%31%32%20%31%36%20%31%34%22%3E%3C%2F%70%6F%6C%79%6C%69%6E%65%3E%3C%2F%73%76%67%3E");
+        --calendar: url("data:image/svg+xml,%3C%73%76%67%20%78%6D%6C%6E%73%3D%22%68%74%74%70%3A%2F%2F%77%77%77%2E%77%33%2E%6F%72%67%2F%32%30%30%30%2F%73%76%67%22%20%77%69%64%74%68%3D%22%32%34%22%20%68%65%69%67%68%74%3D%22%32%34%22%20%76%69%65%77%42%6F%78%3D%22%30%20%30%20%32%34%20%32%34%22%20%66%69%6C%6C%3D%22%6E%6F%6E%65%22%20%73%74%72%6F%6B%65%3D%22%23%66%66%66%66%66%66%22%20%73%74%72%6F%6B%65%2D%77%69%64%74%68%3D%22%32%22%20%73%74%72%6F%6B%65%2D%6C%69%6E%65%63%61%70%3D%22%72%6F%75%6E%64%22%20%73%74%72%6F%6B%65%2D%6C%69%6E%65%6A%6F%69%6E%3D%22%72%6F%75%6E%64%22%20%63%6C%61%73%73%3D%22%66%65%61%74%68%65%72%20%66%65%61%74%68%65%72%2D%63%61%6C%65%6E%64%61%72%22%3E%3C%72%65%63%74%20%78%3D%22%33%22%20%79%3D%22%34%22%20%77%69%64%74%68%3D%22%31%38%22%20%68%65%69%67%68%74%3D%22%31%38%22%20%72%78%3D%22%32%22%20%72%79%3D%22%32%22%3E%3C%2F%72%65%63%74%3E%3C%6C%69%6E%65%20%78%31%3D%22%31%36%22%20%79%31%3D%22%32%22%20%78%32%3D%22%31%36%22%20%79%32%3D%22%36%22%3E%3C%2F%6C%69%6E%65%3E%3C%6C%69%6E%65%20%78%31%3D%22%38%22%20%79%31%3D%22%32%22%20%78%32%3D%22%38%22%20%79%32%3D%22%36%22%3E%3C%2F%6C%69%6E%65%3E%3C%6C%69%6E%65%20%78%31%3D%22%33%22%20%79%31%3D%22%31%30%22%20%78%32%3D%22%32%31%22%20%79%32%3D%22%31%30%22%3E%3C%2F%6C%69%6E%65%3E%3C%2F%73%76%67%3E");
+        --chevron: url("data:image/svg+xml,%3C%73%76%67%20%78%6D%6C%6E%73%3D%22%68%74%74%70%3A%2F%2F%77%77%77%2E%77%33%2E%6F%72%67%2F%32%30%30%30%2F%73%76%67%22%20%77%69%64%74%68%3D%22%32%34%22%20%68%65%69%67%68%74%3D%22%32%34%22%20%76%69%65%77%42%6F%78%3D%22%30%20%30%20%32%34%20%32%34%22%20%66%69%6C%6C%3D%22%6E%6F%6E%65%22%20%73%74%72%6F%6B%65%3D%22%23%66%66%66%66%66%66%22%20%73%74%72%6F%6B%65%2D%77%69%64%74%68%3D%22%32%22%20%73%74%72%6F%6B%65%2D%6C%69%6E%65%63%61%70%3D%22%72%6F%75%6E%64%22%20%73%74%72%6F%6B%65%2D%6C%69%6E%65%6A%6F%69%6E%3D%22%72%6F%75%6E%64%22%20%63%6C%61%73%73%3D%22%66%65%61%74%68%65%72%20%66%65%61%74%68%65%72%2D%63%68%65%76%72%6F%6E%73%2D%64%6F%77%6E%22%3E%3C%70%6F%6C%79%6C%69%6E%65%20%70%6F%69%6E%74%73%3D%22%37%20%31%33%20%31%32%20%31%38%20%31%37%20%31%33%22%3E%3C%2F%70%6F%6C%79%6C%69%6E%65%3E%3C%70%6F%6C%79%6C%69%6E%65%20%70%6F%69%6E%74%73%3D%22%37%20%36%20%31%32%20%31%31%20%31%37%20%36%22%3E%3C%2F%70%6F%6C%79%6C%69%6E%65%3E%3C%2F%73%76%67%3E");
+    }
+}
+
 * {
     box-sizing: border-box;
 }
+::selection {
+    color: var(--black);
+}
+html {
+    background-color: var(--background);
+}
 body {
+    background-color: var(--background);
     font-family: var(--font-family);
+    color: var(--black);
     font-weight: normal;
+    margin: 0;
 }
 div.wrapper {
     max-width: 500px;
-    width: 99%;
+    width: 95%;
     margin: 0 auto;
 }
 
@@ -29,49 +62,58 @@ span.tiny {
     font-size: 0.5em;
 }
 hr {
-    border: 1px solid black;
+    border: 1px solid var(--black);
 }
-
-/* Selector */
-select.custom-selector {
-    /* abolish detault styles */
-    appearance: none;
-    /* set new styles */
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 0;
-    /* text */
-    color: black;
-    font-size: 1rem;
-    font-family: var(--font-family);
-    line-height: 1.5;
-    /* sizing and spacing */
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 0.75em 1em 0.4em 1em;
-    grid-area: select;
+p#snake-of-good-health {
+    font-size: 3rem;
+    margin: 0.5rem 0;
+    text-align: center;
 }
-select.custom-selector {
-    /* removes blue rounded-corner outline when <select> element has focus */
-    outline: none;
+a {
+    color: var(--blue);
 }
-.custom-selector-container {
-    position: relative;
-}
-.custom-selector-container::after {
-    content: "⏷";
-    font-weight: bold;
-    pointer-events: none;
-    width: 0.8em;
-    height: 0.5em;
-    position: absolute;
-    right: 1rem;
-    top: 20%;
+a:visited {
+    color: var(--purple);
 }
 
 /* Lists */
 ul {
     padding-left: 1.5rem;
+}
+
+/* Cards */
+section.card {
+    border: 5px dotted var(--black);
+    padding: 1.15rem 1rem 0.5rem 1rem;
+    margin: 1rem 0;
+}
+section.card > h2:first-of-type {
+    margin-top: 0;
+}
+
+/* Pay scale selector */
+select.selector {
+    /* abolish detault styles */
+    appearance: none;
+    /* set new styles */
+    background-color: var(--background);
+    border: 2px solid var(--black);
+    border-radius: 0;
+    /* text */
+    color: var(--black);
+    font-size: 1rem;
+    font-family: var(--font-family);
+    line-height: 1.5;
+    /* sizing and spacing */
+    width: 100%;
+    padding: 0.75em 1em 0.4em 1em;
+    grid-area: select;
+    outline: none; /* removes blue rounded-corner outline when <select> element has focus */
+    /* icon */
+    background-image: var(--chevron);
+    background-position: center right 0.75rem;
+    background-size: 1.2rem;
+    background-repeat: no-repeat;
 }
 
 /* Pay table */
@@ -81,12 +123,12 @@ table.pay-rates {
     border-collapse: collapse;
 }
 table.pay-rates td>p {
-    color: black;
+    color: var(--black);
     font-weight: bold;
     margin: 0;
 }
 table.pay-rates td>p.note {
-    color: #555;
+    color: var(--grey);
     font-weight: normal;
 }
 table.pay-rates td:first-of-type > p.note::before {
@@ -107,12 +149,119 @@ tr td:last-of-type > p {
     content: "$ ";
 }
 
-/* Cards */
-section.card {
-    border: 5px dotted black;
-    padding: 1.15rem 1rem 0.5rem 1rem;
-    margin: 1rem 0;
+/* Shift data input */
+.shift-input {
+    background-color: var(--background);
+    border: 2px solid var(--black);
+    border-radius: 0;
+    color: var(--black);
+    font-size: 1rem;
+    font-family: var(--font-family);
+    line-height: 1.5;
+    padding: 0.75em 1em 0.4em 1em;
+    text-align: center;
+    /* removes blue rounded-corner outline when <select> element has focus */
+    outline: none;
+    appearance: none;
 }
-section.card > h2:first-of-type {
-    margin-top: 0;
+
+input[type="date"].shift-input {
+    /* capitalises the placeholder DD/MM/YYYY */
+    text-transform: uppercase;
+    appearance: none;
+}
+
+input:invalid {
+    border-color: #e74c3c;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.form-row > * {
+    flex: 1 1 50px;
+    display: inline;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+#shift-checker-readout {
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+/* Removes unwanted native controls from date/time inputs */
+/* Icons from https://feathericons.com/ */
+@supports selector(::-webkit-calendar-picker-indicator) {
+    input::-webkit-calendar-picker-indicator {
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 1.2rem;
+        width: 1.2rem;
+        padding: 0;
+        position: relative;
+        top: -0.2rem;
+    }
+    
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        background-image: var(--calendar);
+    }
+    
+    input[type="time"]::-webkit-calendar-picker-indicator {
+        background-image: var(--clock);
+    }
+}
+
+@supports not selector(::-webkit-calendar-picker-indicator) {
+    input {
+        background-position: center right 0.75rem;
+        background-size: 1.2rem;
+        background-repeat: no-repeat;
+    }
+    
+    input[type="date"] {
+        background-image: var(--calendar);
+    }
+    
+    input[type="time"] {
+        background-image: var(--clock);
+    }          
+}
+
+/* Shift length increment/decrement buttons */
+div.number-clicker {
+    display: flex;
+    flex-direction: row;
+}
+
+div.number-clicker > input {
+    flex-grow: 1;
+    border-left: none;
+    border-right: none;
+}
+
+div.number-clicker > div {
+    padding: 0 1.2rem;
+    background-color: var(--black);
+    color: var(--white);
+    pointer-events: all; /* allows js to listen for click events */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-family: monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    touch-action: manipulation; /* prevents zoom on MobileSafari */
+}
+div.number-clicker > div::selection {
+    color: var(--white);
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    appearance: none; /* Hides the native increment/decrement buttons on Chromium based browsers */
 }
