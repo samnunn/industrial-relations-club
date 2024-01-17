@@ -66,6 +66,25 @@
                 
             </section>
             <section class="card">
+                <h2>Shift Checker <span class="tiny">(beta)</span></h2>
+                <table id="shift-checker">
+                    <thead>
+                        <tr>
+                            <td>Date</td>
+                            <td>Start Time</td>
+                            <td>Duration</td>
+                            <td>Type</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <input type="button" name="shift-checker-add" id="shift-checker-add" value="Add Shift">
+                <input type="button" name="shift-checker-submit" id="shift-checker-submit" value="Calculate Pay">
+                <p id="shift-checker-readout"></p>
+            </section>
+            <section class="card">
                 <h2>Hourly Rates</h2>
                 <table class="pay-rates">
                     <tbody>
@@ -325,6 +344,267 @@
         </footer>
     </div>
     <script>
+        // SHIFT CHECKER
+        shiftList = document.querySelector('#shift-checker tbody')
+        shiftListAdderButton = document.querySelector('#shift-checker-add')
+        
+        function addNewRow() {
+            lastRow = shiftList.querySelector('tr:last-of-type')
+            if (lastRow) {
+                // make a dupe
+                newRow = lastRow.cloneNode(true)
+                dateSelector = newRow.querySelector('input[type="date"]')
+                dateSelector.valueAsNumber = dateSelector.valueAsNumber + 24 * 60 * 60 * 1000
+                shiftList.appendChild(newRow)
+                dateSelector.focus()
+            } else {
+                newRow = document.createElement('tr')
+                newRow.classList.add('shift-data')
+                newRow.innerHTML = `
+                <td><input type="date"></td>
+                <td><input type="time" step="60000"></td>
+                <td><input type="number"></td>
+                <td>
+                    <select name="shift-type-selector" id="shift-type-selector" class="custom-select">
+                        <option value="normal">Normal</option>
+                        <option value="oncall">On Call</option>
+                        <option value="recall">Recall</option>
+                        <option value="leave">Annual Leave</option>
+                    </select>
+                </td>
+                <td><input type="button" value="x"></td>
+                `.trim()
+                shiftList.appendChild(newRow)
+            }
+            newRow.querySelector('input[type="button"]').addEventListener('click', (e) => { deleteRow(e) })
+        }
+        
+        function deleteRow(e) {
+            if (shiftList.childElementCount > 1) {
+                e.target.parentNode.parentNode.remove()
+            }
+        }
+        
+        shiftListAdderButton.addEventListener('click', addNewRow)
+        window.addEventListener('load', addNewRow)
+        
+        function createModelFromUserEnteredShifts() {
+            // Take information from the user-entered shifts and return an array of dicts
+            let shifts = []
+            let userEnteredShifts = document.querySelectorAll('.shift-data')
+            
+            for (s of userEnteredShifts) {
+                // Extract user data from inputs
+                let shiftStartDate = s.querySelector('input[type="date"]').valueAsDate
+                let shiftStartTime = s.querySelector('input[type="time"]').valueAsDate
+                let shiftDurationInHours = s.querySelector('input[type="number"]').value
+                let shiftType = s.querySelector('#shift-type-selector').value
+                
+                // Skip if incomplete information is provided
+                if (!shiftStartDate || !shiftStartTime || !shiftDurationInHours) {
+                    console.warn('Invalid row')
+                    break
+                }
+                
+                // Amalgamate shift date + time inputs into one JS Date object @ UTC
+                let shiftStartDateTimeUTC = shiftStartDate
+                shiftStartDateTimeUTC.setUTCHours(shiftStartTime.getUTCHours())
+                shiftStartDateTimeUTC.setUTCMinutes(shiftStartTime.getUTCMinutes())
+                
+                // Save to model
+                shifts.push({
+                    'start_utc': shiftStartDateTimeUTC,
+                    'duration_in_minutes': shiftDurationInHours * 60,
+                    'shift_type': shiftType,
+                })
+            }
+            
+            return shifts
+        }
+        
+        let now = new Date()
+        
+        function breakShiftIntoChunks(startTime, shiftDurationInMinutes, chunkDurationInMinutes) {
+            // chunk shift into n minute intervals (60 % chunkDurationInMinutes should be zero)
+            // the first chunk will run from the nominated start time until the next even multiple of chunkDurationInMinutes
+            // the last chunk will run from the last even multiple of chunkDurationInMinutes until the nominated end time
+            
+            let minutesSinceMidnight = startTime.getUTCHours() * 60 + startTime.getUTCMinutes()
+            let intervalCount = Math.ceil(minutesSinceMidnight / chunkDurationInMinutes)
+            
+            // set variables for first iteration
+            let currentChunkStart = minutesSinceMidnight
+            let currentChunkEnd = intervalCount * chunkDurationInMinutes
+            
+            chunks = [
+            [currentChunkStart, currentChunkEnd]
+            ]
+            
+            while (true) {
+                currentChunkStart = currentChunkEnd
+                
+                if (currentChunkEnd + chunkDurationInMinutes <= minutesSinceMidnight + shiftDurationInMinutes) {
+                    currentChunkEnd += chunkDurationInMinutes
+                    chunks.push([currentChunkStart, currentChunkEnd])
+                } else {
+                    currentChunkEnd = minutesSinceMidnight + shiftDurationInMinutes
+                    chunks.push([currentChunkStart, currentChunkEnd])
+                    break
+                }
+            }
+            
+            return chunks
+        }
+        
+        
+        function calculatePayRateForChunk(chunk, shift, timeElapsedInMinutes, standardHourlyRate) {
+            // returns the pay rate in dollars (unrounded) for the provided chunk
+            // uses a 'bid' system to find the highest applicable rate
+            // that means all possible rates get evaluated
+            // some efficiencies could be gained here, but at the cost of much poorer maintainability/readability
+            
+            // Initialise bids list
+            bids = []
+            
+            // Create a Date object that represents midnight the day the shift started
+            let midnight = s['start_utc']
+            midnight.setUTCHours(0,0,0,0) // h, m, s, ms = 0
+            
+            // Make consisely-named variables avaiable to the rule matching logic
+            chunkStartDateTime = new Date(midnight.valueOf() + c[0] * 60 * 1000)
+            let day = chunkStartDateTime.getUTCDay()
+            let hours = chunkStartDateTime.getUTCHours() // hour of the day at the START of the chunk
+            
+            // Weekdays (Monday mornings special-cased below)
+            if (day <= 5 && day >= 1) {
+                if (hours >= 0 && hours < 8) {          // 0000 - 0800
+                    bids.push(1.25)
+                } else if (hours >= 8 && hours < 18) {  // 0800 - 1800
+                    bids.push(1.0)
+                } else if (hours >= 18 && hours < 24) { // 1800 - 2400
+                    bids.push(1.2)
+                }
+                
+            }
+            
+            // Saturdays (0000 - 2400)
+            if (day == 6) {
+                bids.push(1.5)
+            }
+            
+            // Sundays and the following monday
+            if (day == 0) {
+                bids.push(1.75)
+            }
+            if (day == 1 && hours >= 0 && hours < 8) {
+                bids.push(1.75)
+            }
+            
+            // Public holidays
+            // 0000 - 2400 on the day
+            // 0000 - 0800 the day after
+            
+            // Overtime (minor) timeElapsedInMinutes
+            // Overtime (major) timeElapsedInMinutes
+            
+            // Recall
+            if (shift['shift_type'] == 'recall') {
+                if (timeElapsedInMinutes < 3 * 60) { // First three hours
+                    if (hours >= 6) { // Weekdays
+                        bids.push(1.5)
+                        console.log('recall weekday')
+                    } else if (day == 0 && hours >= 6)  { // Sundays
+                        console.log('recall sunday')
+                        bids.push(1.75)
+                    } else if (hours >= 0 && hours < 6) { // Nights
+                        console.log('recall night')
+                        bids.push(2.0)
+                    }
+                    
+                } else { // Subseqent hours
+                    bids.push(2.0)
+                    console.log('recall > 3 hours')
+                }
+            }
+            
+            // Assign the final pay rate for this chunk to the highest bidder
+            let winner = bids.sort((a, b) => b - a)[0]
+            return winner * standardHourlyRate
+        }
+        
+        
+        function calculateRosterValue() {
+            // Calculates the total pay due for the roster provided
+            // All date logic will be carried out at UTC
+            
+            // Make model of the user-entered shifts
+            let shifts = createModelFromUserEnteredShifts()
+            
+            // get hourly rates
+            standardHourlyRate = getAnnualRate() / (40 * 52.1666)
+            
+            // Iterate over each shift…
+            let timeWorkedInThisRosterInMinutes = 0
+            let totalPay = 0
+            let penalties = {}
+            
+            for (s of shifts) {
+                // ON CALL
+                switch (s['shift_type']) {
+                    case 'oncall':
+                    let onCallHourlyRate = getOnCallHourlyRate()
+                    if (!penalties[onCallHourlyRate]) { penalties[onCallHourlyRate] = 0 }
+                    penalties[onCallHourlyRate] += s['duration_in_minutes']
+                    break
+                    
+                    case 'leave':
+                    // deliberately ignores penalty rates (not offered for leave)
+                    if (!penalties[standardHourlyRate]) { penalties[standardHourlyRate] = 0 }
+                    penalties[standardHourlyRate] += s['duration_in_minutes']
+                    break
+                    
+                    default:
+                    // Catches recall and routine shifts
+                    // Recall still needs a "bid" process because sometimes the other penalty rates are higher than the recall rate
+                    
+                    // Break shift into chunks
+                    chunks = breakShiftIntoChunks(s['start_utc'], s['duration_in_minutes'], 60)
+                    
+                    // Iterate over chunks and add their values to penalties{}
+                    for (c of chunks) {
+                        // Get pay rate for this chunk
+                        payRate = calculatePayRateForChunk(c, s, timeWorkedInThisRosterInMinutes, standardHourlyRate)
+                        // Get duration of this chunk
+                        timeForThisChunkInMinutes = c[1] - c[0]
+                        // Add to penalties model
+                        if (!penalties[payRate]) { penalties[payRate] = 0 } // default to zero if undefined
+                        penalties[payRate] += timeForThisChunkInMinutes
+                        // Add to total time worked
+                        timeWorkedInThisRosterInMinutes += timeForThisChunkInMinutes
+                    }
+                    
+                }
+                
+                
+            }
+            
+            // Multiply each penalty by the hours worked while earning it
+            console.log(penalties)
+            for (penalty in penalties) {
+                pay = (penalty * (penalties[penalty] / 60)).toFixed(2)
+                pay = parseFloat(pay) // toFixed returns a String, needs to be converted bac
+                totalPay += pay
+            }
+            
+            // Cha-ching!
+            return totalPay
+        }
+        
+        shiftCheckerSubmit = document.querySelector('#shift-checker-submit')
+        shiftCheckerSubmit.addEventListener('click', (e) => {
+            document.querySelector('#shift-checker-readout').innerText = `$${calculateRosterValue()}`
+        })
+        
         // PAY RATES
         
         function insertThousandsSeparator(x) {
@@ -351,7 +631,7 @@
                 // generate $60 per week increment
                 sixtyMeaslyDollarIncrement = (parseFloat(sixtyMeaslyDollarIncrement) + (52.1666 * 60)).toFixed(0)
             }
-
+            
             // could technically be more efficient, but meh
             if (percentageAdjustmentOnlyMode == true) {
                 return percentageAdjustedDollars
@@ -361,12 +641,25 @@
             }
         }
         
+        // does not round to two digits because it's used to calculate on-call pay, which is sensitive to rounding errors
+        function getOnCallHourlyRate() {
+            onCallAnnualRate = document.querySelector('[data-payscale-epoch-oncall]').getAttribute('data-payscale-epoch-annual-salary')
+            onCallAnnualRate = correctForAnnualSalaryAdjustment(onCallAnnualRate)
+            onCallHourlyRate = ((0.1875 * onCallAnnualRate) / (40 * 52.1666))
+            return onCallHourlyRate
+        }
+        
+        function getAnnualRate() {
+            annualRate = parseFloat(rateSelector.value)
+            annualRate = correctForAnnualSalaryAdjustment(annualRate)
+            return annualRate
+        }
+        
         rateSelector = document.querySelector('#rate-selector')
         
         function updateRates() {
             // annual rate
-            annualRate = parseFloat(rateSelector.value)
-            annualRate = correctForAnnualSalaryAdjustment(annualRate)
+            annualRate = getAnnualRate()
             annualRateReadout = document.querySelector('#annual-rate')
             annualRateReadout.innerText = insertThousandsSeparator(annualRate)
             
@@ -391,9 +684,8 @@
             pdAllowanceFornightlyReadout.innerText = ` of $${(2* pdAllowance / 52.1666).toFixed(2)}`
             
             // on call rate
-            onCallAnnualRate = document.querySelector('[data-payscale-epoch-oncall]').getAttribute('data-payscale-epoch-annual-salary')
-            onCallAnnualRate = correctForAnnualSalaryAdjustment(onCallAnnualRate)
-            onCallHourlyRate = ((0.1875 * onCallAnnualRate) / (40 * 52.1666)).toFixed(2)
+            onCallHourlyRate = getOnCallHourlyRate()
+            onCallHourlyRate = onCallHourlyRate.toFixed(2)
             onCallReadout = document.querySelector('#oncall-rate')
             onCallReadout.innerText = onCallHourlyRate
         }
