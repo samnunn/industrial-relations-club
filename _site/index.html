@@ -78,9 +78,22 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr class="shift-data">
+                            <td><input type="date"></td>
+                            <td><input type="time" step="60000"></td>
+                            <td><input type="number"></td>
+                            <td>
+                                <select name="shift-type-selector" id="shift-type-selector">
+                                    <option value="normal">Normal</option>
+                                    <option value="oncall">On Call</option>
+                                    <option value="recall">Recall</option>
+                                    <option value="leave">Annual Leave</option>
+                                </select>   
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
-                <input type="button" name="shift-checker-add" id="shift-checker-add" value="Add Shift">
+                <!-- <input type="button" name="shift-checker-add" id="shift-checker-add" value="Add Shift"> -->
                 <input type="button" name="shift-checker-submit" id="shift-checker-submit" value="Calculate Pay">
                 <p id="shift-checker-readout"></p>
             </section>
@@ -331,6 +344,13 @@
                     <li>If you don’t work on a public holiday, you still get eight hours of non-penalty pay</li>
                 </ol>
             </section>
+            <!-- <section class="card">
+                <h2>Payslip Reader <span class="tiny">(beta)</span></h2>    
+                <form action="/upload" method=post enctype=multipart/form-data id="slip-form">
+                    <label class="btn no-select" for="slip-input">Upload Payslip</label>
+                    <input id="slip-input" class="invisible" type=file name=file multiple>
+                </form>
+            </section> -->
             <section class="card">
                 <h2>Sources</h2>
                 <ul>
@@ -385,8 +405,8 @@
             }
         }
         
-        shiftListAdderButton.addEventListener('click', addNewRow)
-        window.addEventListener('load', addNewRow)
+        // shiftListAdderButton.addEventListener('click', addNewRow)
+        // window.addEventListener('load', addNewRow)
         
         function createModelFromUserEnteredShifts() {
             // Take information from the user-entered shifts and return an array of dicts
@@ -697,5 +717,7 @@
             updateRates()
         })
     </script>
+    <!-- <script src="/js/pdf.js"></script> -->
+    <!-- <script type="module" src="/js/extractor.js"></script> -->
 </body>
 </html>
