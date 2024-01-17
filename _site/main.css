@@ -33,7 +33,7 @@ hr {
 }
 
 /* Selector */
-select#rate-selector {
+select.custom-selector {
     /* abolish detault styles */
     appearance: none;
     /* set new styles */
@@ -51,14 +51,14 @@ select#rate-selector {
     padding: 0.75em 1em 0.4em 1em;
     grid-area: select;
 }
-select#rate-selector:focus {
+select.custom-selector {
     /* removes blue rounded-corner outline when <select> element has focus */
     outline: none;
 }
-#rate-selector-container {
+.custom-selector-container {
     position: relative;
 }
-#rate-selector-container::after {
+.custom-selector-container::after {
     content: "⏷";
     font-weight: bold;
     pointer-events: none;
