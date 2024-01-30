@@ -27,3 +27,9 @@ The shift calculator applies the penalty terms in the Agreement to a single shif
 - **Overtime** is not accounted for because only one shift is entered at a time. This is primarily a user interface design issue. The underlying code is designed to calculate the value of multiple shifts at a time.
 
 This project has given me quite a bit of sympathy for the poor souls at [HSS](https://www.hss.health.wa.gov.au/) who had to implement this *with other peoples’ real money*. I can only imagine how un-fun it would be to write this in COBAL.
+
+## Open Source
+Industrial Relations Club makes use of these open source projects:
+- [Twemoji](https://github.com/twitter/twemoji) for the pager (📟) favicon (CC-BY 4.0 License)
+    - Converted to .ico via [favicon.io](https://favicon.io/)
+- [Feather](https://github.com/feathericons/feather) for the icons (MIT License)
