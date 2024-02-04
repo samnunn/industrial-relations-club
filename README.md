@@ -28,8 +28,16 @@ The shift calculator applies the penalty terms in the Agreement to a single shif
 
 This project has given me quite a bit of sympathy for the poor souls at [HSS](https://www.hss.health.wa.gov.au/) who had to implement this *with other peoples’ real money*. I can only imagine how un-fun it would be to write this in COBAL.
 
+# Colophon
 ## Open Source
 Industrial Relations Club makes use of these open source projects:
 - [Twemoji](https://github.com/twitter/twemoji) for the pager (📟) favicon (CC-BY 4.0 License)
     - Converted to .ico via [favicon.io](https://favicon.io/)
 - [Feather](https://github.com/feathericons/feather) for the icons (MIT License)
+- [Pipenv](https://pipenv.pypa.io/en/latest/) (MIT License)
+- [matplotlib](https://matplotlib.org/stable/) for the graphs (Matplotlib License)
+- [pandas](https://pandas.pydata.org/) (BSD 3-Clause License)
+
+## Other Software
+- [Monodraw](https://monodraw.helftone.com/) for the ASCII art
+- [Flat UI Colors 2](https://flatuicolors.com/)
