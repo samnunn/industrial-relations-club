@@ -64,7 +64,6 @@
                         <option data-payscale-epoch-pd-allowance="10167" data-payscale-epoch-annual-salary="163766" value="163766">Trainee Public Health Physician Yr 7</option>                        
                     </select>
                 </div>
-                
             </section>
             <section class="card">
                 <h2>Hourly Rates</h2>
@@ -408,23 +407,23 @@
         │   \____/_/   \_\_____\____|\___/|_____/_/   \_\_| \___/|_| \_\  │
         │                                                                 │
         └─────────────────────────────────────────────────────────────────┘
-
+        
         # What It Does
         1. Takes the user-entered shift information from the DOM (createModelFromUserEnteredShifts)
         2. Breaks the shifts into chunks of sixty minutes or less (breakShiftIntoChunks)
         3. Uses the start time of each chunk to work out what rate it should be paid at (calculatePayRateForChunk)
         4. Aggregates applicable pay rates and how much time was worked at each rate
         5. Multiplies rates x time worked to calculate how much money is owed
-
+        
         # Rounding Behaviour
         - HSS rounds to the nearest cent after the total amount owed **in each penalty rate** is calculated
-            - It's not per-shift or per-payslip
+        - It's not per-shift or per-payslip
         - Although our payslips report an hourly rate of $40.07 for an intern, it's actually 83609 / (52.1666 * 40) = $40.06826207 that gets used in pay calculations
         - The placement of every .toFixed() in this code is deliberate, so be mindful when making changes
-
+        
         */
         shiftList = document.querySelector('#shift-checker tbody')
-
+        
         function createModelFromUserEnteredShifts() {
             // Take information from the user-entered shifts and return an array of dicts
             // Originally designed to be rows in a table, but was later rationalised to be a single shift
@@ -626,10 +625,7 @@
                         // Add to total time worked
                         timeWorkedInThisRosterInMinutes += timeForThisChunkInMinutes
                     }
-                    
                 }
-                
-                
             }
             
             // Multiply each penalty by the hours worked while earning it
@@ -639,12 +635,10 @@
                 pay = parseFloat(pay) // toFixed returns a String, needs to be converted bac
                 totalPay += pay
             }
-            
             // Cha-ching!
             return totalPay
         }
-
-
+        
         // SHIFT DURATION INPUT BUTTONS
         const minusButton = document.querySelector('div.number-clicker > div:first-of-type')
         const plusButton = document.querySelector('div.number-clicker > div:last-of-type')
@@ -674,7 +668,7 @@
                 updateRosterValueReadout()
             }
         })
-
+        
         const timeInput = document.querySelector('input[type="time"]');
         
         timeInput.addEventListener('focusout', () => {
@@ -696,7 +690,7 @@
             // Set the rounded time back to the input value
             timeInput.value = roundedTime
         })
-
+        
         function updateRosterValueReadout() {
             value = calculateRosterValue().toFixed(2)
             value = insertThousandsSeparator(value)
@@ -710,8 +704,6 @@
                 updateRosterValueReadout()
             })
         }
-
-        
         /*
         ┌─────────────────────────────────────────────────────────────────┐
         │        ____   _ __   __  ____   ____    _    _     _____        │
