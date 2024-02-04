@@ -68,11 +68,6 @@ span.tiny {
 hr {
     border: 1px solid var(--black);
 }
-p#snake-of-good-health {
-    font-size: 3rem;
-    margin: 0.5rem 0;
-    text-align: center;
-}
 a {
     color: var(--blue);
 }
