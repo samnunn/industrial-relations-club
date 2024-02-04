@@ -267,3 +267,7 @@ div.number-clicker > div::selection {
 input[type="number"]::-webkit-inner-spin-button {
     appearance: none; /* Hides the native increment/decrement buttons on Chromium based browsers */
 }
+
+#dit-pay-trends {
+    width: 100%;
+}
