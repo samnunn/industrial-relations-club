@@ -735,12 +735,15 @@
         
         function correctForAnnualSalaryAdjustment(dollars, percentageAdjustmentOnlyMode=false) {
             const epochDate = new Date('2022-06-30')
-            const currentDate = new Date()
+            const currentDate = new Date(2024, 5, 1) // patched to avoid appling in increment after FY23/24 (new agreement pending)
             const diff = currentDate - epochDate
             const yearDelta = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25))
             
-            // WA's New Wages Policy policy states that we will have an annual pay rise of 3% or $60 per week, whichever is greater
+            // WA's New Wages Policy policy stated that we will have an annual pay rise of 3% or $60 per week, whichever is greater
             // https://web.archive.org/web/20230604183824/https://www.wa.gov.au/organisation/department-of-treasury/wages-policy
+            // These terms only benefitted interns in the 2022-2023 transition
+            // The terms were updated in 2024 to withdraw the automatic 3% increase and let unions negotiate individually
+            // https://web.archive.org/web/20240816015836/https://www.wa.gov.au/organisation/department-of-treasury/wages-policy
             
             // this loop has to exist because the agreement rounds to whole dollars each year
             percentageAdjustedDollars = dollars
