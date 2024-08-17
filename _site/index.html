@@ -821,8 +821,6 @@
         window.addEventListener('load', (e) => {
             // Initialise pay rates
             updateRates()
-            // Initialise roster calcualtor
-            updateRosterValueReadout()
             // Set date to today
             datePicker = document.querySelector('.shift-data input[type="date"]')
             now = new Date()
@@ -834,6 +832,8 @@
             month = String(month).padStart(2, "0")
             let year = now.getFullYear()
             datePicker.value = `${year}-${month}-${day}`
+            // Initialise roster calcualtor
+            updateRosterValueReadout()
         })
     </script>
 </body>
