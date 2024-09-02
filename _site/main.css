@@ -273,3 +273,20 @@ input[type="number"]::-webkit-inner-spin-button {
 #dit-pay-trends {
     width: 100%;
 }
+
+.red {
+    border: none !important;
+    background-color: #eb4d4b;
+    color: white;
+    p {
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+    p:last-child {
+        margin-bottom: 0.4rem;
+    }
+    a, a:visited {
+        color: white;
+
+    }
+}
