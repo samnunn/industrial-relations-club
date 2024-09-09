@@ -110,7 +110,7 @@ select.selector {
     line-height: 1.5;
     /* sizing and spacing */
     width: 100%;
-    padding: calc(var(--vertical-spacing) * 0.75) 1em calc(var(--vertical-spacing) * 0.4) 1em;
+    padding: calc(var(--vertical-spacing) * 0.75) 2.25em calc(var(--vertical-spacing) * 0.4) 1em;
     grid-area: select;
     outline: none; /* removes blue rounded-corner outline when <select> element has focus */
     /* icon */
@@ -179,12 +179,7 @@ input:invalid {
     border-color: #e74c3c;
 }
 
-.form-row {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-.form-row > * {
+label, select {
     flex: 1 1 50px;
     display: inline;
     display: flex;
@@ -274,9 +269,16 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 100%;
 }
 
-.red {
+.form-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.admonition {
     border: none !important;
     background-color: #eb4d4b;
+    background-color: #27ae60;
     color: white;
     p {
         margin: 0;
