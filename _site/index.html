@@ -23,9 +23,6 @@
             <h1 id="site-title">Industrial Relations<span class="tiny">.club</span></h1>
         </header>
         <main>
-            <section class="card admonition">
-                <p>Updated to reflect our <a href="https://www.amawa.com.au/support-representation/wa-health-industrial-agreement-bargaining/">new agreement</a>.</p>
-            </section>
             <section class="card" id="data-selectors">
                 <h2>Pay Scale</h2>
                 <div class="form-row">
@@ -348,7 +345,7 @@
                 </div>
             </section>
             <section class="card">
-                <h2>Trends <span class="tiny">(new)</span></h2>
+                <h2>Trends</h2>
                 <img src="/attachments/dit-pay-trends.svg" id="dit-pay-trends" class="svg-darkmode" alt="The percentage change in DiT salaries from 2018-2023 plotted alongside the percentage change in the Consumer Price Index (CPI), AHPRA fees, and the median cost of renting a unit in Perth." title="Number go up.">
                 <h3>Data Sources</h3>
                 <ul>
@@ -385,7 +382,7 @@
             <section class="card">
                 <h2>Sources</h2>
                 <ul>
-                    <li><a href="https://www.amawa.com.au/support-representation/wa-health-industrial-agreement-bargaining/">AMA WA Industrial Agreement (2024)</a></li>
+                    <li><a href="https://www.amawa.com.au/wp-content/uploads/2024/12/WA-Health-System-Medical-Practitioners-AMA-Industrial-Agreement-2024-WEB-1.pdf">AMA WA Industrial Agreement (2024)</a></li>
                     <li><a href="https://www.wairc.wa.gov.au/resources/awards/?id=PUB007">WA Public Service Award (1992)</a></li>
                     <li><a href="https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia">Australian Bureau of Statistics</a></li>
                     <li><a href="https://web.archive.org/web/20240829090546/https://reiwa.com.au/the-wa-market/perth-metro/">REIWA</a></li>
@@ -394,7 +391,7 @@
             </section>
         </main>
         <footer>
-            <p>Last updated <span id="last-updated">2025-01-10</span>. <a href="https://github.com/samnunn/industrial-relations-club">Source.</a></p>
+            <p>Last updated <span id="last-updated">2025-08-17</span>. <a href="https://github.com/samnunn/industrial-relations-club">Source.</a></p>
         </footer>
     </div>
     <script>
@@ -698,7 +695,7 @@
             // Convert hours and minutes back to string format
             const roundedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
             
-            // Set the rounded time back to the input value
+            // Set the input value to the newly-rounded time
             timeInput.value = roundedTime
         })
         
